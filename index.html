@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Варшапхала 2026: Путь Мастерства</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: #fef3c7; /* Светло-песочный для читаемости */
+            overflow-x: hidden;
+            position: relative;
+            background-color: #0c0a09;
+        }
+
+        #video-background video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        #video-background::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(12, 10, 30, 0.7); /* Глубокий темный фильтр */
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        #starfield {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fbbf24, #d946ef); /* Золото и пурпур */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #f5d0fe;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 1rem auto;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #d946ef, #fbbf24);
+            color: #000;
+            font-weight: bold;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(217, 70, 239, 0.4);
+        }
+
+        .visual-block {
+            width: 200px;
+            height: 200px;
+            margin: 2rem auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .human-silhouette {
+            background: radial-gradient(circle, #fbbf24, transparent);
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            animation: glow 2s infinite alternate;
+        }
+
+        .crown-icon {
+            font-size: 4rem;
+            color: #fbbf24;
+            text-shadow: 0 0 20px #d97706;
+        }
+
+        .lightning-icon {
+            font-size: 4rem;
+            color: #f87171;
+            animation: pulse 1s infinite;
+        }
+
+        .angel-wing {
+            font-size: 5rem;
+            color: #ffffff;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 10px #7dd3fc);
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #fbbf24; }
+            to { box-shadow: 0 0 30px #d946ef, 0 0 60px #fbbf24; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(251, 191, 36, 0.1);
+        }
+
+        th {
+            background: rgba(217, 70, 239, 0.2);
+            color: #fbbf24;
+        }
+
+        #lucky-btn {
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            color: #000;
+        }
+
+        #fortune-display {
+            background: rgba(217, 70, 239, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            border: 1px dashed #fbbf24;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="Cosmic_nebula.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <button id="toggle-audio-btn"
+            style="
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.15);
+                border: 1px solid rgba(251, 191, 36, 0.3);
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+            ">🔊</button>
+
+    <section id="hero">
+        <div id="starfield"></div>
+        <h1>Навигатор Судьбы: 2026</h1>
+        <p>Год Весов и золотой Венеры.</p>
+        <p>Ваша карта Варшапхалы указывает на время больших социальных достижений. В этом году удача приходит через общение и решительные действия.</p>
+        <button class="btn" onclick="showSection('manifest')">Открыть горизонты</button>
+    </section>
+
+    <section id="manifest" style="display:none;">
+        <h2>Территория Прибыли</h2>
+        <div class="visual-block">
+            <div class="human-silhouette"></div>
+        </div>
+        <p>Ваша точка роста (Мунтха) в 11-м доме — доме исполнения желаний и влиятельных связей. Это год «жатвы»!</p>
+        <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
+            <li><strong>Ваш фокус:</strong> Нетворкинг и работа с группами людей.</li>
+            <li><strong>Ваша сила:</strong> Мунтха-пати Солнце в 3-м доме дает энергию убеждения.</li>
+            <li><strong>Результат:</strong> Реализация давних амбиций через поддержку со стороны.</li>
+        </ul>
+        <button class="btn" onclick="showSection('career')">Изучить силу</button>
+    </section>
+
+    <section id="career" style="display:none;">
+        <h2>Энергия Инициативы</h2>
+        <div class="visual-block">
+            <div class="crown-icon">🎯</div>
+        </div>
+        <p>Венера — ваш Варшеша — ведет за собой Марс и Солнце в 3-м доме. Ваше слово в этом году — закон.</p>
+        <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
+            <li><strong>Шад-бала Марса:</strong> 139%. Ваша пробивная мощь огромна. Не бойтесь начинать новое!</li>
+            <li><strong>Варшеша Венера:</strong> Направляет вашу активность в русло красоты и дипломатии.</li>
+            <li><strong>Обучение:</strong> Идеальное время для курсов, текстов и медиа-проектов.</li>
+        </ul>
+        <button class="btn" onclick="showSection('transformation')">Посмотреть риски</button>
+    </section>
+
+    <section id="transformation" style="display:none;">
+        <h2>Зоны Внимания</h2>
+        <div class="visual-block">
+            <div class="lightning-icon">⚡</div>
+        </div>
+        <p>Меркурий в изгнании в 3-м доме требует осторожности в деталях.</p>
+        <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
+            <li><strong>Слабое звено:</strong> Спешка в документах или резкие слова могут создать заторы.</li>
+            <li><strong>Сатурн в 6-м:</strong> Предстоит много рутинной работы, но она станет фундаментом стабильности.</li>
+            <li><strong>Совет:</strong> Проверяйте письма дважды и берегите связки.</li>
+        </ul>
+        <button class="btn" onclick="showSection('protection')">Найти опору</button>
+    </section>
+
+    <section id="protection" style="display:none;">
+        <h2>Духовный Щит</h2>
+        <div class="visual-block">
+            <div class="angel-wing">☸️</div>
+        </div>
+        <p>Юпитер в 9-м доме — мощнейшая защита года. Его Шад-бала 139% гарантирует поддержку свыше.</p>
+        <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
+            <li><strong>Удача:</strong> Даже в сложных ситуациях «счастливый случай» выведет вас к свету.</li>
+            <li><strong>Мудрость:</strong> Ваши наставники или дальние поездки станут источником вдохновения.</li>
+            <li><strong>Статус:</strong> Юпитер в Близнецах помогает монетизировать ваши знания.</li>
+        </ul>
+        <button class="btn" onclick="showSection('advice')">Итоги года</button>
+    </section>
+
+    <section id="advice" style="display:none;">
+        <h2>Ваш План 2026</h2>
+        <table>
+            <tr>
+                <th>Сфера</th>
+                <th>Стратегия</th>
+            </tr>
+            <tr>
+                <td>Финансы</td>
+                <td>Доходы растут через новые контакты и смелые идеи.</td>
+            </tr>
+            <tr>
+                <td>Отношения</td>
+                <td>Луна в 7-м доме (138%) требует внимания к чувствам партнера.</td>
+            </tr>
+            <tr>
+                <td>Личный рост</td>
+                <td>Время заявить о себе. Ваш голос должен звучать громко.</td>
+            </tr>
+            <tr>
+                <td>Здоровье</td>
+                <td>Дисциплина (Сатурн) поможет сохранить тонус.</td>
+            </tr>
+        </table>
+        
+        <button id="lucky-btn" class="btn" onclick="showFortune()">Послание Звезд 🎯</button>
+        <div id="fortune-display">Нажмите, чтобы услышать шепот Вселенной...</div>
+    </section>
+
+    <script>
+        function createStarField() {
+            const starfield = document.getElementById('starfield');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.width = Math.random() * 2 + 'px';
+                star.style.height = star.style.width;
+                star.style.backgroundColor = i % 5 === 0 ? '#fbbf24' : 'white';
+                star.style.borderRadius = '50%';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.opacity = Math.random();
+                star.style.animation = `twinkle ${Math.random() * 5 + 2}s infinite`;
+                starfield.appendChild(star);
+            }
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'flex';
+            window.scrollTo(0,0);
+        }
+
+        const fortunes = [
+            "💎 Мунтха в 11-м доме обещает: ваше самое смелое желание этого года исполнится через друзей.",
+            "🔥 Марс дает вам 139% силы. Сегодня лучший день, чтобы сделать первый шаг в новом деле.",
+            "🌟 Варшеша Венера в 3-м доме: ваше обаяние — ключ к любой закрытой двери.",
+            "🧘 Юпитер в 9-м доме охраняет ваш путь. Доверьтесь ходу событий, вы в безопасности.",
+            "📡 Информация — ваше золото. Одно сообщение сегодня может изменить ход месяца.",
+            "🤝 Луна в 7-м доме: успех придет через партнерство. Слушайте, что говорят другие.",
+            "🏗️ Сатурн в 6-м доме: порядок в делах принесет покой в душе. Начните с малого.",
+            "🗝️ Меркурий в Муле: докопайтесь до сути вопроса, прежде чем принимать решение."
+        ];
+
+        function showFortune() {
+            const randomIndex = Math.floor(Math.random() * fortunes.length);
+            const fortuneDisplay = document.getElementById('fortune-display');
+            fortuneDisplay.textContent = fortunes[randomIndex];
+        }
+
+        const video = document.querySelector('#video-background video');
+        const audioBtn = document.getElementById('toggle-audio-btn');
+
+        audioBtn.addEventListener('click', () => {
+            if (video.muted) {
+                video.muted = false;
+                audioBtn.innerHTML = '🔇';
+            } else {
+                video.muted = true;
+                audioBtn.innerHTML = '🔊';
+            }
+        });
+
+        window.onload = function() {
+            createStarField();
+        };
+    </script>
+</body>
+</html>
